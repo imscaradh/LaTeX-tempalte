@@ -1,0 +1,174 @@
+% #########################################################################
+% Main document
+% #########################################################################
+
+%---------------------------------------------------------------------------
+\documentclass[
+    a4paper,			    % paper format
+    10pt,				    % fontsize
+    %twoside,			    % double-sided
+    %openright,				% begin new chapter on right side
+    notitlepage,			% use no standard title page
+    parskip=half,			% set paragraph skip to half of a line
+]{scrreprt}					% KOMA-script report
+%---------------------------------------------------------------------------
+
+\raggedbottom
+\KOMAoptions{cleardoublepage=plain}			% Add header and footer on blank pages
+
+
+% Load Standard Packages:
+%---------------------------------------------------------------------------
+\usepackage[standard-baselineskips]{cmbright}
+
+\usepackage[nenglish]{babel}                % english hyphenation
+%\usepackage[ngerman]{babel}                 % german hyphenation
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}				    % hyphenation of words with ä,ö and ü
+\usepackage{textcomp}						% additional symbols
+\usepackage{ae}								% better resolution of Type1-Fonts 
+\usepackage{fancyhdr}						% simple manipulation of header and footer 
+\usepackage{etoolbox}						% color manipulation of header and footer
+\usepackage{graphicx}                       % integration of images
+\usepackage{float}							% floating objects
+\usepackage{caption}						% for captions of figures and tables
+\usepackage{booktabs}						% package for nicer tables
+\usepackage{tocvsec2}						% provides means of controlling the sectional numbering
+%---------------------------------------------------------------------------
+
+% Load Math Packages
+%---------------------------------------------------------------------------
+\usepackage{amsmath}    	   	            % various features to facilitate writing math formulas
+\usepackage{amsthm}       	 	            % enhanced version of latex's newtheorem
+\usepackage{amsfonts}      		            % set of miscellaneous TeX fonts that augment the standard CM
+\usepackage{amssymb}    					% mathematical special characters
+\usepackage{exscale}    					% mathematical size corresponds to textsize
+\usepackage{csquotes}
+%---------------------------------------------------------------------------
+
+% Package to facilitate placement of boxes at absolute positions
+%---------------------------------------------------------------------------
+\usepackage[absolute]{textpos}
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+%---------------------------------------------------------------------------					
+
+% Definition of Colors
+%---------------------------------------------------------------------------
+\RequirePackage{color}                      % Color instead of xcolor
+\definecolor{linkblue}{rgb}{0,0,0.8}        % Standard
+\definecolor{darkblue}{rgb}{0,0.08,0.45}    % Dark blue
+\definecolor{linkcolor}{rgb}{0,0,0}        	% Black for the print-version
+%---------------------------------------------------------------------------
+
+% Hyperref Package (Create links in a pdf)
+%---------------------------------------------------------------------------
+\usepackage[
+    pdftex,ngerman,bookmarks,plainpages=false,pdfpagelabels,
+    backref = {false},					    % No index backreference
+    colorlinks = {true},                    % Color links in a PDF
+    hypertexnames = {true},                 % no failures "same page(i)"
+    bookmarksopen = {true},                 % opens the bar on the left side
+    bookmarksopenlevel = {0},               % depth of opened bookmarks
+    pdftitle = {},	   	                    % PDF-property
+    pdfauthor = {zinggpa},                  % PDF-property
+    pdfsubject = {LaTeX Template},          % PDF-property
+    linkcolor = {linkcolor},                % Color of Links
+    citecolor = {linkcolor},                % Color of Cite-Links
+    urlcolor = {linkcolor},                 % Color of URLs
+]{hyperref}
+%---------------------------------------------------------------------------
+
+% Set up page dimension
+%---------------------------------------------------------------------------
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=28mm,
+    right=28mm,
+    top=30mm,
+    headheight=20mm,
+    headsep=10mm,
+    textheight=242mm,
+    footskip=15mm
+}
+%---------------------------------------------------------------------------
+
+% Makeindex Package
+%---------------------------------------------------------------------------
+\usepackage{makeidx}                   % To produce index
+\makeindex                             % Index-Initialisation
+%---------------------------------------------------------------------------
+
+% Glossary Package
+%---------------------------------------------------------------------------
+\usepackage[nonumberlist]{glossaries}
+\makeglossaries
+\include{database/glossary}
+%---------------------------------------------------------------------------
+
+% Intro:
+%---------------------------------------------------------------------------
+\begin{document}                        % Start Document
+\settocdepth{subsection}			    % Set depth of toc
+\pagenumbering{roman}														
+%---------------------------------------------------------------------------
+
+\input{preface/title}
+\input{preface/version}	
+
+% Set up header and footer
+%---------------------------------------------------------------------------
+%---------------------------------------------------------------------------
+
+
+% Title Page and Abstract
+%---------------------------------------------------------------------------
+\include{preface/titlepage}             
+\cleardoubleemptypage
+\setcounter{page}{1}
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Management Summary}
+\include{preface/management_summary}
+\cleardoubleemptypage
+%---------------------------------------------------------------------------
+
+% Table of contents
+%---------------------------------------------------------------------------
+\tableofcontents
+\cleardoublepage
+%---------------------------------------------------------------------------
+
+% Main part:
+%---------------------------------------------------------------------------
+\pagenumbering{arabic}
+
+%---------------------------------------------------------------------------
+
+% Bibliography
+%---------------------------------------------------------------------------
+\cleardoublepage
+\phantomsection 
+\addcontentsline{toc}{chapter}{Literature}
+\bibliographystyle{IEEEtranS}
+\bibliography{database/bibliography}{}
+%---------------------------------------------------------------------------
+
+% Listings
+%---------------------------------------------------------------------------
+\cleardoublepage
+\phantomsection 
+\addcontentsline{toc}{chapter}{Figures}
+\listoffigures
+%---------------------------------------------------------------------------
+
+% Attachment:
+%---------------------------------------------------------------------------
+\appendix
+\settocdepth{section}
+%---------------------------------------------------------------------------
+
+%---------------------------------------------------------------------------
+\end{document}
+
